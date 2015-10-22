@@ -1,0 +1,17 @@
+web:
+  image: phpmentors/symfony-app
+  container_name: php-ci
+  ports:
+    - 80
+  volumes:
+    - .:/var/app
+    - ./server_conf/default_site.conf:/etc/apache2/sites-available/000-default.conf
+    - ./server_conf/mailcather.ini:/etc/php5/apache2/conf.d/99-mailcatcher.ini
+    - ~/Git:/git
+    - ~/Code:/projects
+  environment:
+    APP_DOCUMENT_ROOT: /var/app/public
+  external_links:
+    - mysql:mysql
+    - mailcatcher:mailcatcher
+  restart: always
