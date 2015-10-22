@@ -13,5 +13,4 @@ web:
     APP_DOCUMENT_ROOT: /var/app/public
   external_links:
     - mysql:mysql
-    - mailcatcher:mailcatcher
   restart: always
