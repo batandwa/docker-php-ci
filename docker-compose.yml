@@ -9,6 +9,7 @@ web:
     - ./server_conf/mailcather.ini:/etc/php5/apache2/conf.d/99-mailcatcher.ini
     - ~/Git:/git
     - ~/Code:/projects
+    - ./setup.sh:/setup.sh
   environment:
     APP_DOCUMENT_ROOT: /var/app/public
   external_links:
