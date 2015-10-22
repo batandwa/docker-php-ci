@@ -1,4 +1,5 @@
 #!/bin/bash
+apt-get update
 apt-get install --yes curl
 curl --silent --location https://deb.nodesource.com/setup_4.x | sudo bash -
 apt-get install --yes nodejs
