@@ -1,6 +1,6 @@
 web:
   extends:
-    file: docker-compose.yml
+    file: docker-compose-common.yml
     service: web
   environment:
     VIRTUAL_HOST: php-ci.lamp1.ca.batandwa.me
