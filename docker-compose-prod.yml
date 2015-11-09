@@ -3,7 +3,7 @@ web:
     file: docker-compose-common.yml
     service: web
   environment:
-    VIRTUAL_HOST: php-ci.lamp1.ca.batandwa.me
+    VIRTUAL_HOST: php-ci.tools.batandwa.me
   volumes:
     - ./app:/var/app
     - ./server_conf/default_site.conf:/etc/apache2/sites-available/000-default.conf
