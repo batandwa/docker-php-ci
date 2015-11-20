@@ -1,0 +1,3 @@
+general_log_file='/var/log/mysql/mysql_queries.log' 
+general_log=on
+log_output='file'
