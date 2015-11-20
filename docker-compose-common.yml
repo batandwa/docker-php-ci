@@ -4,15 +4,24 @@ web:
   ports:
     - 80
   volumes:
-    - ~/Git:/git
     - ./app:/var/app
     - ./server_conf/default_site.conf:/etc/apache2/sites-available/000-default.conf
     - ./server_conf/mailcather.ini:/etc/php5/apache2/conf.d/99-mailcatcher.ini
-    #- ~/Code:/projects
     - ~/projects:/projects
     - ./setup.sh:/setup.sh
   environment:
     APP_DOCUMENT_ROOT: /var/app/public
-  external_links:
-    - mysql:mysql
-  restart: always
+
+db:
+  image: mysql/mysql-server
+  environment:
+    MYSQL_ROOT_PASSWORD: doinkydoinkwalking
+    MYSQL_DATABASE: phpci
+    MYSQL_USER: phpci
+    MYSQL_PASSWORD: admin
+  container_name: php-ci-db
+  ports:
+    - 3306
+  volumes:
+    - ./mysql:/var/lib/mysql
+    - ./backups.sh:/backups.sh\
