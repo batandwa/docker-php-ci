@@ -8,4 +8,4 @@ docker-compose up -d
 #docker-compose up -d --force-recreate
 #docker exec `basename $PWD` a2enmod rewrite
 #docker restart `basename $PWD`
-docker exec -it `basename $PWD` sh -c 'echo "*  *  *  *  *  /var/app/console phpci:run-builds" >> /etc/cron.d/phpci'
+#docker exec -it `basename $PWD` sh -c 'echo "*  *  *  *  *  /var/app/console phpci:run-builds" >> /etc/cron.d/phpci'
