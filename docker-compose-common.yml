@@ -1,6 +1,6 @@
 web:
+  # build: /home/batandwa/Git/dockerimage-symfony
   image: phpmentors/symfony-app
-  container_name: php-ci
   ports:
     - 80
   volumes:
@@ -19,7 +19,6 @@ db:
     MYSQL_DATABASE: phpci
     MYSQL_USER: phpci
     MYSQL_PASSWORD: admin
-  container_name: php-ci-db
   ports:
     - 3306
   volumes:

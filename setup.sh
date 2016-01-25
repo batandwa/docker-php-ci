@@ -28,9 +28,10 @@ docker-compose restart
 
 docker exec `basename $PWD` bash -c 'cd /var/app && ./composer.phar --ignore-platform-reqs install'
 docker exec `basename $PWD` bash -c 'cd /var/app && ./composer.phar --ignore-platform-reqs update'
+docker exec `basename $PWD` chown www-data:www-data /var/app -Rf
 
 docker exec `basename $PWD` mv /var/app/PHPCI/config.yml /var/app/PHPCI/config.yml.`date +%Y%m%d%H%M%S`
-docker exec `basename $PWD` bash -c 'cd /var/app && ./console phpci:install --url=http://$VIRTUAL_HOST --db-host=db --db-name=phpci6 --db-user=root --db-pass=doinkydoinkwalking --admin-name=admin --admin-pass=doinkydoinkwalking --admin-mail=admin@batandwa.me --no-ansi --no-interaction'
+docker exec `basename $PWD` bash -c 'cd /var/app && ./console phpci:install --url=http://$VIRTUAL_HOST --db-host=db --db-name=phpci --db-user=root --db-pass=doinkydoinkwalking --admin-name=admin --admin-pass=doinkydoinkwalking --admin-mail=admin@batandwa.me --no-ansi --no-interaction'
 
 docker exec `basename $PWD` touch /var/.build-tool-set-up
 

@@ -9,7 +9,7 @@ web:
     - ~/Code:/projects
   links:
     - "db:db"
-  
+
 db:
   extends:
     file: docker-compose-common.yml
@@ -17,4 +17,3 @@ db:
   volumes:
     - ./server_conf/mysql_default.cnf:/etc/my.cnf
     - ./server_conf/mysql:/etc/my.cnf.d
-  
