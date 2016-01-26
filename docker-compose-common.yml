@@ -4,7 +4,6 @@ symfony:
     - ./config/default_site.conf:/etc/apache2/sites-available/000-default.conf
     - ./config/mailcather.ini:/etc/php5/apache2/conf.d/99-mailcatcher.ini
     - ~/projects:/projects
-    - ./mysql_backups:/backups
   env_file:
     - ./config/docker/symfony.env.ini
 
@@ -14,6 +13,7 @@ db:
     - ./config/docker/mysql.env.ini
   volumes:
     - ./mysql:/var/lib/mysql
-    # - ./backups.sh:/backups.sh
+    - ./backups.sh:/backups.sh
     - ./config/mysql_default.cnf:/etc/my.cnf
     - ./config/mysql:/etc/my.cnf.d
+    - ./mysql_backups:/backups

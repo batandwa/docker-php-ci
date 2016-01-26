@@ -2,8 +2,6 @@ web:
   extends:
     file: docker-compose-common.yml
     service: web
-  environment:
-    VIRTUAL_HOST: php-ci.tools.batandwa.me
   volumes:
     - ~/projects:/projects
   restart: always

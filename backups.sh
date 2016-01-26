@@ -2,8 +2,6 @@
 
 HOST="localhost"
 
-#rm "$OUTPUTDIR/*gz" > /dev/null 2>&1
-
 databases=`mysql -u $MYSQL_USER -h $HOST -p$MYSQL_PASSWORD -e "SHOW DATABASES;" | tr -d "| " | grep -v Database`
 
 for db in $databases; do

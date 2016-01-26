@@ -2,8 +2,6 @@ symfony:
   extends:
     file: docker-compose-common.yml
     service: symfony
-  environment:
-    VIRTUAL_HOST: php-ci.docker
   volumes:
     - ~/Git:/git
     - ~/Code:/projects
