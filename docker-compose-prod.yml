@@ -1,7 +1,7 @@
-web:
+symfony:
   extends:
     file: docker-compose-common.yml
-    service: web
+    service: symfony
   volumes:
     - ~/projects:/projects
   restart: always
