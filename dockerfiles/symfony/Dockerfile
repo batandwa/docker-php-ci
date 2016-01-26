@@ -23,15 +23,6 @@ RUN apt-get install --yes ruby \
 #     && (crontab -l ; echo "*  *  *  *  *  /var/app/console phpci:run-builds") | crontab
 RUN a2enmod rewrite
 
-# docker-compose restart
-
-# RUN bash -c '/var/app/composer.phar --ignore-platform-reqs install' \
-#     && bash -c '/var/app/composer.phar --ignore-platform-reqs update' \
-#     && chown www-data:www-data /var/app -Rf
-#     && mv /var/app/PHPCI/config.yml /var/app/PHPCI/config.yml.`date +%Y%m%d%H%M%S` \
-#     && bash -c 'cd /var/app && ./console phpci:install --url=http://$VIRTUAL_HOST --db-host=db --db-name=phpci --db-user=root --db-pass=doinkydoinkwalking --admin-name=admin --admin-pass=doinkydoinkwalking --admin-mail=admin@batandwa.me --no-ansi --no-interaction' \
-#     && touch /var/.build-tool-set-up
-
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
@@ -50,9 +41,6 @@ RUN curl -o phpci.tar.gz -SL https://github.com/Block8/PHPCI/archive/${PHPCI_VER
     && chown -R www-data:www-data /var/app \
     && cp /var/app/public/.htaccess.dist /var/app/public/.htaccess \
     && composer install --working-dir /var/app -o --no-dev --no-interaction
-    # && mv /var/app/PHPCI/config.yml /var/app/PHPCI/config.yml.`date +%Y%m%d%H%M%S` \
-    # RUN /var/app/console phpci:install --url=http://$PHPCI_HOST --db-host=db --db-name=$DB_ENV_MYSQL_DATABASE --db-user=$DB_ENV_MYSQL_USER --db-pass=$DB_ENV_MYSQL_PASSWORD --admin-name=admin --admin-pass=admin --admin-mail=admin@batandwa.me --no-ansi --no-interaction
-
 
     # DB_ENV_MYSQL_DATABASE  =phpci
     # DB_ENV_MYSQL_PASSWORD  =doindfdc6cb0bk
@@ -80,6 +68,7 @@ ENV APACHE_LOG_DIR /var/log/apache2
 # ENV APP_DEBUG 0
 
 
+
 #use to be mounted into nginx for exemple
 VOLUME /var/app/public
 
@@ -87,8 +76,7 @@ WORKDIR /var/app
 
 EXPOSE 80
 
-# COPY app-entrypoint.sh /entrypoint.sh
-# RUN chmod +x /entrypoint.sh
-
-# ENTRYPOINT ["/entrypoint.sh"]
-# CMD ["php-fpm"]
+COPY docker-entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["apache2-foreground"]
