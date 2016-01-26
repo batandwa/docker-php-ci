@@ -1,7 +1,7 @@
-web:
+symfony:
   extends:
     file: docker-compose-common.yml
-    service: web
+    service: symfony
   environment:
     VIRTUAL_HOST: php-ci.docker
   volumes:
@@ -14,6 +14,3 @@ db:
   extends:
     file: docker-compose-common.yml
     service: db
-  volumes:
-    - ./server_conf/mysql_default.cnf:/etc/my.cnf
-    - ./server_conf/mysql:/etc/my.cnf.d
