@@ -1,14 +1,10 @@
 symfony:
   build: dockerfiles/symfony
-  # image: phpmentors/symfony-app
-  ports:
-    - 80
   volumes:
-    # - ./app:/var/app
     - ./config/default_site.conf:/etc/apache2/sites-available/000-default.conf
     - ./config/mailcather.ini:/etc/php5/apache2/conf.d/99-mailcatcher.ini
     - ~/projects:/projects
-    - ./setup.sh:/setup.sh
+    - ./mysql_backups:/backups
   env_file:
     - ./config/docker/symfony.env.ini
 
